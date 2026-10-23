@@ -1,0 +1,13 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Редакторы
+.vscode/
+.idea/
+*.swp
+
+# На будущее, если появятся инструменты на Node.js
+node_modules/
+*.log
