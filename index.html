@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Заголовок вкладки и описание для поисковиков -->
+    <title>Alasqa — Backend WEB developer</title>
+    <meta name="description" content="Alasqa — backend web developer. Links to YouTube, Discord, GitHub and Telegram.">
+    <meta name="author" content="Alasqa">
+
+    <!-- Цвет интерфейса браузера на телефонах -->
+    <meta name="theme-color" content="#06111a">
+    <meta name="color-scheme" content="dark">
+
+    <!-- Иконки сайта -->
+    <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Когда подключишь домен: раскомментируй блок и замени https://example.com на свой адрес.
+         Это превью, которое видно, когда ссылку на сайт кидают в Telegram, Discord и т.п.
+         og:url и og:image должны быть полными ссылками. -->
+    <!--
+    <link rel="canonical" href="https://example.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alasqa">
+    <meta property="og:description" content="Backend WEB developer">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:image" content="https://example.com/images/avatar.jpg">
+    <meta name="twitter:card" content="summary">
+    -->
+
+    <!-- Шрифты лежат в fonts/. Предзагружаем те, что нужны на первом экране -->
+    <link rel="preload" href="fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/links.css">
+  </head>
+
+  <body>
+
+    <!-- Иконки (SVG-спрайт). Ниже они подключаются через <use href="#icon-...">.
+         Новая иконка: добавь сюда <symbol> со своим id и viewBox="0 0 24 24". -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-youtube" viewBox="0 0 24 24">
+        <rect x="2.5" y="5" width="19" height="14" rx="4"></rect>
+        <path d="M10 9 L15 12 L10 15 Z"></path>
+      </symbol>
+      <symbol id="icon-discord" viewBox="0 0 24 24">
+        <path d="M4 6 C4 4.9 4.9 4 6 4 H18 C19.1 4 20 4.9 20 6 V15 C20 16.1 19.1 17 18 17 H10 L6 20 V17 C4.9 17 4 16.1 4 15 Z"></path>
+        <circle cx="9.5" cy="10.5" r="1"></circle>
+        <circle cx="14.5" cy="10.5" r="1"></circle>
+      </symbol>
+      <symbol id="icon-github" viewBox="0 0 24 24">
+        <path d="M8 8 L4 12 L8 16 M16 8 L20 12 L16 16 M13.5 6 L10.5 18"></path>
+      </symbol>
+      <symbol id="icon-telegram" viewBox="0 0 24 24">
+        <path d="M21 4 L3 11 L10 13.5 L12.5 20.5 Z M10 13.5 L21 4"></path>
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <path d="M7 17 L17 7 M9 7 H17 V15"></path>
+      </symbol>
+    </svg>
+
+    <!-- Шапка: пока пустая, сюда позже можно добавить меню -->
+    <header class="site-header"></header>
+
+    <main class="page">
+
+      <!-- Профиль: ник, аватарка и инфа обо мне -->
+      <section class="profile" aria-labelledby="profile-name">
+        <h1 class="profile__name" id="profile-name">Alasqa</h1>
+
+        <img class="profile__avatar" src="images/avatar.webp" width="447" height="447" alt="Alasqa avatar" fetchpriority="high">
+
+        <ul class="profile__info" role="list">
+          <li>16 years old</li>
+          <li>Backend WEB developer</li>
+          <li>Favorite game - Rust 2.3k hours</li>
+        </ul>
+      </section>
+
+      <!-- Ссылки. Замени href="#" на свои адреса, а ник под названием — на свой.
+           Новая ссылка: скопируй блок <a>…</a>, поменяй модификатор link--…,
+           иконку в <use href="#icon-…"> и текст. -->
+      <nav class="links" aria-label="Links">
+
+        <!-- YouTube: https://www.youtube.com/@твой_ник -->
+        <a class="link link--youtube" href="#" target="_blank" rel="noopener">
+          <span class="link__icon"><svg aria-hidden="true"><use href="#icon-youtube"></use></svg></span>
+          <span class="link__text">
+            <span class="link__title">YouTube</span>
+            <span class="link__handle">@alasqa</span>
+          </span>
+          <svg class="link__arrow" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </a>
+
+        <!-- Discord: профиль https://discord.com/users/твой_id или приглашение на сервер https://discord.gg/код -->
+        <a class="link link--discord" href="#" target="_blank" rel="noopener">
+          <span class="link__icon"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></span>
+          <span class="link__text">
+            <span class="link__title">Discord</span>
+            <span class="link__handle">alasqa</span>
+          </span>
+          <svg class="link__arrow" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </a>
+
+        <!-- GitHub: https://github.com/твой_ник -->
+        <a class="link link--github" href="#" target="_blank" rel="noopener">
+          <span class="link__icon"><svg aria-hidden="true"><use href="#icon-github"></use></svg></span>
+          <span class="link__text">
+            <span class="link__title">GitHub</span>
+            <span class="link__handle">github.com/alasqa</span>
+          </span>
+          <svg class="link__arrow" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </a>
+
+        <!-- Telegram: https://t.me/твой_ник -->
+        <a class="link link--telegram" href="#" target="_blank" rel="noopener">
+          <span class="link__icon"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></span>
+          <span class="link__text">
+            <span class="link__title">Telegram</span>
+            <span class="link__handle">@alasqa</span>
+          </span>
+          <svg class="link__arrow" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </a>
+
+      </nav>
+
+    </main>
+
+  </body>
+
+</html>
