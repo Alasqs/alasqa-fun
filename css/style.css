@@ -1,0 +1,234 @@
+/*
+ * Alasqa — сайт-визитка
+ * Основные стили: шрифты, переменные, фон, шапка, сетка, профиль.
+ * Карточки ссылок — в links.css.
+ */
+
+/* Шрифты (лежат в ../fonts, лицензия SIL OFL 1.1)
+   Браузер скачивает только нужный набор символов: латиницу или кириллицу.
+   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+@font-face {
+	font-family: "Manrope";
+	font-style: normal;
+	font-weight: 200 800;
+	font-display: swap;
+	src: url("../fonts/manrope-latin-wght-normal.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "Manrope";
+	font-style: normal;
+	font-weight: 200 800;
+	font-display: swap;
+	src: url("../fonts/manrope-cyrillic-wght-normal.woff2") format("woff2");
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: "Unbounded";
+	font-style: normal;
+	font-weight: 200 900;
+	font-display: swap;
+	src: url("../fonts/unbounded-latin-wght-normal.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "Unbounded";
+	font-style: normal;
+	font-weight: 200 900;
+	font-display: swap;
+	src: url("../fonts/unbounded-cyrillic-wght-normal.woff2") format("woff2");
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: "JetBrains Mono";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "JetBrains Mono";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../fonts/jetbrains-mono-cyrillic-400-normal.woff2") format("woff2");
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Переменные: меняй здесь цвета, размытие фона и размеры
+   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root {
+	/* Цвета */
+	--accent: #6cf2b0;                          /* акцент: иконки ссылок и свечение ника */
+	--bg: #06111a;                              /* цвет, пока грузится фон */
+	--text: #e8f4f6;
+	--text-strong: #ffffff;
+	--text-muted: rgba(232, 244, 246, 0.65);
+	--surface: rgba(6, 17, 26, 0.5);            /* панель ссылок */
+	--surface-item: rgba(232, 244, 246, 0.06);  /* одна ссылка */
+	--surface-item-hover: rgba(232, 244, 246, 0.12);
+	--line: rgba(232, 244, 246, 0.2);
+	--line-soft: rgba(232, 244, 246, 0.12);
+
+	/* Фон (сама картинка задаётся в body::before) */
+	--bg-blur: 6px;                             /* сила размытия, 0 = без размытия */
+	--bg-dim: 0.45;                             /* затемнение, от 0 до 1 */
+
+	/* Шрифты */
+	--font-body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-display: "Unbounded", var(--font-body);
+	--font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+	/* Размеры */
+	--header-height: 72px;
+	--name-size: clamp(2.75rem, 9vw, 4rem);     /* ник: от 44 до 64px */
+	--profile-gap: 1.5rem;                      /* 24px между ником, аватаркой и инфой */
+	--radius-avatar: 28px;
+	--radius-card: 24px;
+	--radius-item: 16px;
+}
+
+/* Основа и фон
+   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+body {
+	position: relative;
+	isolation: isolate;
+	min-height: 100vh;
+	min-height: 100dvh;
+	background-color: var(--bg);
+	color: var(--text);
+	font-family: var(--font-body);
+	font-size: 1rem;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Фото Аляски. Края уводим за экран, чтобы размытие не давало светлую рамку */
+body::before {
+	content: "";
+	position: fixed;
+	inset: calc(var(--bg-blur) * -6);
+	z-index: -2;
+	background: url("../images/background.webp") center / cover no-repeat;
+	filter: blur(var(--bg-blur)) saturate(1.1);
+}
+
+/* Затемнение поверх фото, чтобы белый текст читался */
+body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: rgb(4 10 18 / var(--bg-dim));
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+/* SVG-спрайт с иконками: в разметке есть, на экране не виден */
+.sprite {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+/* Шапка (пока пустая)
+   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.site-header {
+	height: var(--header-height);
+	border-bottom: 1px solid rgba(232, 244, 246, 0.22);
+	background: rgba(6, 17, 26, 0.35);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+}
+
+/* Сетка: слева профиль, справа ссылки
+   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 64px;
+	justify-content: space-between;
+	align-items: flex-start;
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: 72px 32px 80px;
+}
+
+/* Профиль
+   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.profile {
+	flex: 1 1 340px;
+	max-width: 420px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--profile-gap);
+}
+
+.profile__name {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: var(--name-size);
+	line-height: 1;
+	letter-spacing: -0.01em;
+	color: var(--text-strong);
+	text-shadow: 0 0 32px color-mix(in srgb, var(--accent) 33%, transparent);
+}
+
+.profile__avatar {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: var(--radius-avatar);
+	border: 1px solid rgba(232, 244, 246, 0.3);
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+	background-color: var(--surface);
+}
+
+.profile__info {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding-top: 4px;
+	font-size: 1.125rem;
+	font-weight: 500;
+	color: var(--text-strong);
+	text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Адаптив
+   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Планшеты и узкие окна: колонки встают друг под друга */
+@media (max-width: 52rem) {               /* 832px */
+	.page {
+		justify-content: center;
+		gap: 40px;
+		padding: 48px 24px 64px;
+	}
+
+	.profile {
+		flex-basis: 100%;
+		max-width: 420px;
+	}
+}
+
+/* Телефоны */
+@media (max-width: 30rem) {               /* 480px */
+	:root {
+		--header-height: 56px;
+		--radius-avatar: 24px;
+		--radius-card: 20px;
+	}
+
+	.page {
+		padding: 32px 16px 48px;
+	}
+}
