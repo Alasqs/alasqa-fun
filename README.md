@@ -1,73 +1,39 @@
 # alasqa-fun
 
-Сайт-визитка **Alasqa**: ник, аватарка, пара строк о себе и ссылки на соцсети.
+Personal business card website of **Alasqa**, a backend web developer.
 
-Чистый HTML и CSS: без сборки, без зависимостей и без `npm install`. Структура проекта по образцу шаблона [LittleLink](https://github.com/sethcottle/littlelink) (MIT), дизайн свой.
+**Live:** [alasqa.fun](https://alasqa.fun)
 
-## Структура
+## Stack
 
-```
-alasqa-fun/
-├── index.html                 страница
-├── css/
-│   ├── reset.css              сброс браузерных стилей
-│   ├── style.css              шрифты, цвета, фон, шапка, сетка, профиль
-│   └── links.css              панель и карточки ссылок
-├── fonts/                     шрифты Unbounded, Manrope, JetBrains Mono (woff2)
-│   └── LICENSES/              их лицензии (SIL OFL 1.1)
-├── images/
-│   ├── avatar.webp            аватарка на странице
-│   ├── avatar.jpg             аватарка для превью ссылки (og:image)
-│   ├── background.webp        фон
-│   ├── favicon.png            иконка во вкладке браузера
-│   └── apple-touch-icon.png   иконка на домашнем экране iPhone
-└── .nojekyll                  чтобы GitHub Pages отдавал файлы как есть, без Jekyll
-```
+Plain HTML and CSS: no build step, no dependencies. Fonts are self-hosted.
 
-## Запуск локально
-
-Можно просто открыть `index.html` в браузере. Но лучше через локальный сервер, тогда страница ведёт себя так же, как на хостинге:
+## Run locally
 
 ```bash
 python3 -m http.server 8000
 ```
 
-и открыть http://localhost:8000.
+Then open <http://localhost:8000>.
 
-## Что где менять
+## Structure
 
-- **Текст о себе** — `index.html`, блок `<ul class="profile__info">`.
-- **Ссылки** — `index.html`, блок `<nav class="links">`: замени `href="#"` на свои адреса, а ник в `link__handle` — на свой. Новая ссылка: скопируй блок `<a class="link …">…</a>`, а иконку добавь в SVG-спрайт в начале `<body>`.
-- **Аватарка и фон** — замени файлы в `images/` на свои с теми же именами.
-- **Цвет акцента, размытие и затемнение фона** — переменные в начале `css/style.css`: `--accent`, `--bg-blur`, `--bg-dim`.
-- **Фирменные цвета соцсетей** — в конце `css/links.css` раскомментируй `--link-accent` у нужной сети.
+```
+index.html   page markup
+css/         reset, base styles and the links panel
+fonts/       Unbounded, Manrope and JetBrains Mono (woff2) with their licenses
+images/      avatar, background and favicons
+```
 
-## Деплой на GitHub Pages
+## Deploy
 
-Сайт обновляется сам при каждом пуше в ветку `main`: GitHub Pages отдаёт файлы прямо из репозитория, сборка не нужна.
+Every push to `main` is published automatically with GitHub Pages.
 
-1. Запушь проект в репозиторий [Alasqs/alasqa-fun](https://github.com/Alasqs/alasqa-fun):
+## Credits
 
-   ```bash
-   git push -u origin main
-   ```
+- Project structure inspired by [LittleLink](https://github.com/sethcottle/littlelink).
+- Fonts are licensed under the [SIL Open Font License 1.1](fonts/LICENSES).
 
-2. В репозитории открой **Settings → Pages → Build and deployment** и выбери **Source: Deploy from a branch**, ветку **main** и папку **/ (root)**, нажми **Save**.
-3. Через минуту-две сайт появится по адресу `https://alasqs.github.io/alasqa-fun/`. Ход выкладки видно на вкладке **Actions**.
+## License
 
-На бесплатном аккаунте GitHub Pages работает только для публичных репозиториев.
-
-## Свой домен
-
-1. Подтверди домен в настройках профиля GitHub (не репозитория): **Settings → Pages → Add a domain**. Это защищает домен от захвата.
-2. В репозитории: **Settings → Pages → Custom domain** — впиши домен и сохрани. GitHub сам добавит в репозиторий файл `CNAME` отдельным коммитом, после этого сделай `git pull`.
-3. У регистратора домена добавь DNS-записи:
-   - для самого домена (`example.com`) — четыре записи **A**: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. По желанию ещё **AAAA**: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`;
-   - для `www` — запись **CNAME** на `<твой-ник>.github.io`.
-4. Когда DNS обновится (от нескольких минут до суток), включи там же **Enforce HTTPS**.
-5. Раскомментируй в `index.html` блок с `canonical` и `og:*` и подставь свой адрес.
-
-## Лицензии
-
-- Шрифты Unbounded, Manrope и JetBrains Mono распространяются по SIL Open Font License 1.1, тексты лицензий лежат в `fonts/LICENSES/`.
-- Фото на фоне: укажи здесь источник и проверь, что его можно использовать на сайте.
+Code is released under the [MIT License](LICENSE).
